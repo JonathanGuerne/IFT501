@@ -21,7 +21,7 @@ with open('produits.data', 'r', encoding='utf-8') as fin, open('produits.arff', 
     for line in fin:
         data = line.split("\t")
         for i in range(100):
-            if data.__contains__(str(i+1)):
+            if (str(i+1)) in data:
                 fou.write("YES")
             else:
                 fou.write("NO")
