@@ -1,10 +1,11 @@
-c = ','
+"""Preprocess a list of products into .arff format."""
+
 product_name = []
 
 with open('description_produit.data', 'r', encoding='utf-8') as fin:
     for line in fin :
         line_array = line.split("\t")
-#        print(line_array[1][:-1])
+        #print(line_array[1][:-1])
         if(len(line_array)>1):
             product_name.append(line_array[1][:-1])
 
@@ -12,7 +13,7 @@ with open('description_produit.data', 'r', encoding='utf-8') as fin:
 with open('produits.data', 'r', encoding='utf-8') as fin, open('produits.arff', 'w', encoding='utf-8') as fou:
     fou.write("@relation produits\n\n")
     for i in range(100):
-        fou.write("@attribute "+str(i+1)+" {NO,YES}\n")
+        fou.write("@attribute " + '"' + product_name[i] + '"' + " {0,1}\n")
 
     fou.write("\n")
     fou.write("@data\n")
@@ -22,9 +23,9 @@ with open('produits.data', 'r', encoding='utf-8') as fin, open('produits.arff', 
         data = line.split("\t")
         for i in range(100):
             if (str(i+1)) in data:
-                fou.write("YES")
+                fou.write("1")
             else:
-                fou.write("NO")
-            fou.write(("" if i == 100 else c))
+                fou.write("0")
+            fou.write(("" if i == 100 else ','))
         fou.write("\n")
     fou.write("\n")
