@@ -15,9 +15,7 @@ with open('produits.data', 'r', encoding='utf-8') as fin, open('produits.arff', 
     for i in range(100):
         fou.write("@attribute " + '"' + product_name[i] + '"' + " {0,1}\n")
 
-    fou.write("\n")
-    fou.write("@data\n")
-    fou.write("\n")
+    fou.write("\n@data\n\n")
 
     for line in fin:
         data = line.split("\t")

@@ -27,11 +27,10 @@ with open('BMS-POS.dat', 'r', encoding='utf-8') as fin, open('BMS-POS.arff', 'w'
         j = 0
         for item in item_id:
             if item in transaction_id[str(i+1)]:
-                 fou.write("1")
-            # else:
-            #     fou.write("0")
+                 fou.write(item)
+                 fou.write("" if j == len(item_id) else ',')
             j = j + 1
-            fou.write("" if j == len(item_id) else ',')
+
         fou.write("\n")
         if i % 10000 == 0:
             print(str((i / len(transaction_id)) * 100)[:5] + "%")
